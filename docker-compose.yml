@@ -1,0 +1,14 @@
+version: '3'
+
+services:
+  anaconda:
+    build:
+      context: .
+    image: continuumio/anaconda3:latest
+    command: /bin/bash -c "/opt/conda/bin/jupyter lab --NotebookApp.password=${ACCESS_TOKEN} --notebook-dir=/opt/notebooks --ip='*' --port=8888 --no-browser --allow-root"
+    volumes: 
+    - .:/opt/notebooks
+    ports:
+      - "8888:8888"
+    environment:
+      TZ: Asia/Tokyo
